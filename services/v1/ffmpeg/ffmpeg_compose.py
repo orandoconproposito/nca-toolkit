@@ -112,7 +112,17 @@ def process_ffmpeg_compose(data, job_id):
                 break
         
         extension = get_extension_from_format(format_name) if format_name else 'mp4'
-        output_filename = os.path.join(STORAGE_PATH, f"{job_id}_output_{i}.{extension}")
+        # Usar el nombre de archivo personalizado si se proporciona
+        if "filename" in output and output["filename"]:
+            base_filename = output["filename"]
+            # Asegurar que tenga la extensión correcta
+            if not base_filename.endswith(f".{extension}"):
+                base_filename = f"{base_filename}.{extension}"
+            output_filename = os.path.join(STORAGE_PATH, base_filename)
+        else:
+            # Usar el nombre generado automáticamente como antes
+            output_filename = os.path.join(STORAGE_PATH, f"{job_id}_output_{i}.{extension}")
+        
         output_filenames.append(output_filename)
         
         for option in output["options"]:

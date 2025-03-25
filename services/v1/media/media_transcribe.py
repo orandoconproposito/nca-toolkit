@@ -13,16 +13,14 @@ logging.basicConfig(level=logging.INFO)
 # Set the default local storage directory
 STORAGE_PATH = "/tmp/"
 
-def process_transcribe_media(media_url, task, include_text, include_srt, include_segments, word_timestamps, response_type, language, job_id):
+def process_transcribe_media(media_url, task, include_text, include_srt, include_segments, word_timestamps, response_type, language, job_id, model_size="medium"):
     """Transcribe or translate media and return the transcript/translation, SRT or VTT file path."""
-    logger.info(f"Starting {task} for media URL: {media_url}")
+    logger.info(f"Starting {task} for media URL: {media_url} with model size: {model_size}")
     input_filename = download_file(media_url, os.path.join(STORAGE_PATH, 'input_media'))
     logger.info(f"Downloaded media to local file: {input_filename}")
 
     try:
-        # Load a larger model for better translation quality
-        #model_size = "large" if task == "translate" else "base"
-        model_size = "base"
+        # Use model size from request parameters
         model = whisper.load_model(model_size)
         logger.info(f"Loaded Whisper {model_size} model")
 

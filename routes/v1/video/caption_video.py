@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
                 "word_color": {"type": "string"},
                 "outline_color": {"type": "string"},
                 "all_caps": {"type": "boolean"},
-                "max_words_per_line": {"type": "integer"},
+                "max_width": {"type": "integer"},
                 "x": {"type": "integer"},
                 "y": {"type": "integer"},
                 "position": {
@@ -52,7 +52,9 @@ logger = logging.getLogger(__name__)
                 "outline_width": {"type": "integer"},
                 "spacing": {"type": "integer"},
                 "angle": {"type": "integer"},
-                "shadow_offset": {"type": "integer"}
+                "shadow_offset": {"type": "integer"},
+                "shadow_opacity": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+                "correct_text": {"type": "string"}
             },
             "additionalProperties": False
         },

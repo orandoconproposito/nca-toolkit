@@ -61,7 +61,9 @@ logger = logging.getLogger(__name__)
                             },
                             "required": ["option"]
                         }
-                    }
+                    },
+                    "filename": {"type": "string"},
+                    "output_path": {"type": "string"}
                 },
                 "required": ["options"]
             },
